@@ -7,11 +7,14 @@ class App extends Component {
     super(props);
 
     this.state = { currentTime: new Date().toString()}
+
+    this.getRandomColor = this.getRandomColor.bind(this);
+    this.clearIntervals = this.clearIntervals.bind(this);
     
   }
 
   componentDidMount() {
-    this.timerID = setInterval(() => {
+    this.interval = setInterval(() => {
       let currDateTime = new Date().toString();
 
       this.setState({ currentTime: currDateTime });
@@ -33,6 +36,16 @@ class App extends Component {
     return color_code;
   }
 
+  componentWillUnmount() {
+    this.clearIntervals();
+  }
+
+  clearIntervals() {
+    if (this.interval) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+  }
   
   render() {
 
