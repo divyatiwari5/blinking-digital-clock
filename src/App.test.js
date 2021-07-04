@@ -1,7 +1,6 @@
 import App from './App';
 import { mount } from 'enzyme';
 
-
 let root;
 
 beforeAll(() => {
@@ -16,14 +15,17 @@ describe('Check random color generation', () => {
   it('checks if random color is being generated', () => {
     let color_code='';
     let used_colors = [];
-  
-    while((color_code !== 7) || (color_code === 7 && used_colors.includes(color_code))) {
-      color_code = '#bf2199';
-      expect(root.instance().getRandomColor()).toBe('#bf2199');
+    let count=0;
+
+    while(count < 5) {
+      color_code = root.instance().getRandomColor();
+    count++;
     }
-  
-    expect(root.instance().used_colors).toBe(['#bf2199']);
-    expect(root.instance().color_code).toBe('#bf2199');
+    used_colors.push(color_code);
+
+    // add function to check that array is unique.
+    const isArrayUnique = arr => Array.isArray(arr) && new Set(arr).size === arr.length; 
+    expect(isArrayUnique(used_colors)).toBeTruthy();
   });
   
 });
