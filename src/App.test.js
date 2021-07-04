@@ -1,8 +1,6 @@
 import App from './App';
-import { configure, mount } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { mount } from 'enzyme';
 
-configure({ adapter: new Adapter() });
 
 let root;
 
