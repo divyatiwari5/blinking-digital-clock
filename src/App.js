@@ -6,17 +6,15 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { currentTime: '' }
+    this.state = { currentTime: new Date().toString()}
     
   }
 
   componentDidMount() {
     this.timerID = setInterval(() => {
-      let currDateTime = new Date().toLocaleString();
-      let separatedDateTime = currDateTime.split(",");
-      let currTime = separatedDateTime[1];
+      let currDateTime = new Date().toString();
 
-      this.setState({ currentTime: currTime });
+      this.setState({ currentTime: currDateTime });
       this.getRandomColor()
 
     }, 1000)
@@ -39,25 +37,16 @@ class App extends Component {
   render() {
 
     const { currentTime } = this.state;
-    const splitTime = currentTime.split(":");
+    const splitDateTime = currentTime.split(" ");
 
     return (
       <div className="clock">
-        {splitTime.map((time, i) => {
-          console.log(splitTime.length, i);
-          return (i!==splitTime.length-1) ? (
-            <p
+        {splitDateTime.map((datetime, i) => {
+           return <p
               key={i} 
               style={{color: this.getRandomColor()}}
-              >{` ${time}:`}
-            </p>)
-            : (
-            <p
-            key={i} 
-            style={{color: this.getRandomColor()}}
-            >{` ${time} `}
+              >{`${datetime} `}
             </p>
-            )
           })
         }
       </div>
