@@ -18,7 +18,12 @@ code {
   margin: 0 auto;
   font-size: 40px;
   width: 80%;
-  font-family: serif;
+  font-family:'digital-clock-font';
   margin-top: 250px;
   border: 2px solid grey;
 }
+
+@font-face{
+  font-family:'digital-clock-font';
+  src: url('./digital-7.ttf');
+ }
