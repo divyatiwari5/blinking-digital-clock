@@ -29,3 +29,25 @@ describe('Check random color generation', () => {
   });
   
 });
+
+describe('App test suite', () => {
+  it('Component did mount', () => {
+    setInterval(() => {
+        root.instance().componentDidMount();
+        expect(root.instance().getRandomColor()).toHaveBeenCalled();
+        expect(root.state().currentTime).toBe(new Date().toString());
+    }, 1000);
+  });
+
+  it('Component Will Unmount', () => {
+    root.instance().componentWillUnmount();
+    expect(root.instance().interval).toBe(null);
+  });
+
+  it('Cleans up intervals', () => {
+    root.instance().interval = 1000;
+    root.instance().clearIntervals();
+    expect(root.instance().interval).toBe(null);
+});
+
+});
